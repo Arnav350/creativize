@@ -1,0 +1,3 @@
+In CreatePost you have to write exactly what Adrian wrote : 
+`data:image/jpeg;base64,${data.photo}`
+ because it's not going to work otherwise
