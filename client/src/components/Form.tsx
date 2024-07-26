@@ -4,7 +4,7 @@ type Props = {
   name: string;
   placeholder: string;
   value: string;
-  handleChange: (event: any) => void;
+  handleChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
   isRandom?: boolean;
   handleRandom?: () => void;
 };
