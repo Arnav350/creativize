@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import Card from "../components/Card";
-import Form from "../components/Form";
 import Loader from "../components/Loader";
 
 type Props = {
@@ -74,13 +73,12 @@ function Home() {
         </p>
       </div>
       <div className="mt-16">
-        <Form
-          labelName="Search posts"
-          type="text"
-          name="text"
-          placeholder="Search posts"
+        <input
+          placeholder={"Search posts..."}
           value={searchText}
-          handleChange={handleSearchChange}
+          onChange={handleSearchChange}
+          required
+          className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-indigo-500 focus:border-indigo-500 outline-none block w-full p-3"
         />
       </div>
       <div className="mt-10">

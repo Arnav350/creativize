@@ -1,8 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import Form from "../components/Form";
-import Loader from "../components/Loader";
 import { getRandomPrompt } from "../utils";
+import Loader from "../components/Loader";
 
 function Create() {
   const navigate = useNavigate();
@@ -66,10 +65,6 @@ function Create() {
     }
   }
 
-  function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
-    setForm({ ...form, [event.target.name]: event.target.value });
-  }
-
   function handleRandom() {
     const randomPrompt = getRandomPrompt(form.prompt);
     setForm({ ...form, prompt: randomPrompt });
@@ -83,26 +78,45 @@ function Create() {
           Create imaginative and visually stunning images through DALLE-AI and share them with the community
         </p>
       </div>
-      <form className="mt-16 max-w-3xl bg-white p-8 rounded-lg shadow-md" onSubmit={handleSubmit}>
+      <form className="mt-8 max-w-3xl bg-white p-8 rounded-lg shadow-md" onSubmit={handleSubmit}>
         <div className="flex flex-col gap-5">
-          <Form
-            labelName="Your name"
-            type="text"
-            name="name"
-            placeholder="John Doe"
-            value={form.name}
-            handleChange={handleChange}
-          />
-          <Form
-            labelName="Prompt"
-            type="text"
-            name="prompt"
-            placeholder="A whimsical bakery with floating pastries, animated kitchen tools, and a cheerful baker."
-            value={form.prompt}
-            handleChange={handleChange}
-            isRandom
-            handleRandom={handleRandom}
-          />
+          <div className="flex flex-col gap-2">
+            <label htmlFor="name" className="text-sm font-medium text-gray-900">
+              {"Your Name"}
+            </label>
+            <input
+              id="name"
+              name="name"
+              placeholder="Arnav Patel"
+              value={form.name}
+              onChange={(event) => setForm({ ...form, name: event.target.value })}
+              required
+              className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-indigo-500 focus:border-indigo-500 outline-none block w-full p-3"
+            />
+          </div>
+          <div>
+            <div className="flex items-center gap-2 mb-2">
+              <label htmlFor="prompt" className="block text-sm font-medium text-gray-900">
+                Prompt
+              </label>
+              <button
+                type="button"
+                onClick={handleRandom}
+                className="font-semibold text-xs bg-gray-200 py-1 px-2 rounded text-black"
+              >
+                Surprise me
+              </button>
+            </div>
+            <textarea
+              id="prompt"
+              name="prompt"
+              placeholder="Placeholder"
+              value={form.prompt}
+              onChange={(event) => setForm({ ...form, prompt: event.target.value })}
+              required
+              className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-indigo-500 focus:border-indigo-500 outline-none block w-full p-3"
+            />
+          </div>
           <div className="relative bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-indigo-500 focus:border-indigo-500 w-64 p-3 h-64 flex justify-center items-center">
             {form.photo ? (
               <img src={form.photo} alt={form.prompt} className="w-full h-full object-contain" />
@@ -120,18 +134,18 @@ function Create() {
           <button
             type="button"
             onClick={generateImage}
-            className="text-white bg-indigo-600 font-medium rounded-md text-sm w-full sm:w-auto px-5 py-2.5 text-center"
+            className="text-white bg-indigo-600 font-semibold rounded-md text-sm w-full sm:w-auto px-5 py-2.5 text-center"
           >
             {generatingImg ? "Generating..." : "Generate"}
           </button>
         </div>
-        <div className="mt-10">
+        <div className="mt-6">
           <p className="mt-2 text-[#666e75] text-[14px]">
             Once you have created the image you want, you can share it with others in the community
           </p>
           <button
             type="submit"
-            className="mt-3 text-white bg-purple-600 font-medium rounded-md text-sm w-full sm:w-auto px-5 py-2.5 text-center"
+            className="mt-3 text-white bg-purple-600 font-semibold rounded-md text-sm w-full sm:w-auto px-5 py-2.5 text-center"
           >
             {loading ? "Sharing..." : "Share with the community"}
           </button>
