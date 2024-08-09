@@ -54,7 +54,7 @@ function Create() {
     if (form.prompt) {
       try {
         setGeneratingImg(true);
-        const response = await fetch("https://creativize.onrender.com/api/v1/dalle", {
+        const response = await fetch("https://creativize.onrender.com/api/generate", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -78,7 +78,7 @@ function Create() {
   async function generateVariation() {
     try {
       setGeneratingImg(true);
-      const response = await fetch("https://creativize.onrender.com/api/v1/dalle/variation", {
+      const response = await fetch("https://creativize.onrender.com/api/variation", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -103,7 +103,7 @@ function Create() {
       setLoading(true);
 
       try {
-        const response = await fetch("https://creativize.onrender.com/api/v1/post", {
+        const response = await fetch("https://creativize.onrender.com/api/post", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
